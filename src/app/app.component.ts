@@ -19,6 +19,7 @@ export class AppComponent {
   }
   onSubmit() {
     this.records.push(this.userForm.value);
+    this.userForm.reset();
     // console.log(this.userForm.value);
   }
 }
