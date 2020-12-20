@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'rform';
+ records = [];
+  userForm: FormGroup;
+  constructor() {
+    this.userForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      age: new FormControl('', [Validators.min(18), Validators.required]),
+      email: new FormControl('', [Validators.email, Validators.required]),
+    });
+  }
+  onSubmit() {
+    this.records.push(this.userForm.value);
+    // console.log(this.userForm.value);
+  }
 }
